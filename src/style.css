@@ -41,7 +41,7 @@ main {
 }
 
 form {
-  /* margin: 36px; */
+  margin-block: 36px;
   display: grid;
   grid-template: 35px 40px / 1fr 1fr;
   gap: 17px;
@@ -77,4 +77,9 @@ button {
 
   border: none;
   cursor: pointer;
+}
+
+.meme-image {
+  max-width: 100%;
+  border-radius: 2px;
 }
