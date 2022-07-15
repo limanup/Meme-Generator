@@ -11,17 +11,22 @@ export default function App() {
     /**
      * this is an example of changing state with a callback function
      * the callback function changes prevCount to prevCount + 1
+     * this is an arrow function 
      */
     function minusOne() {
-        setCount(prevCount => prevCount + 1)
+        setCount(prevCount => prevCount - 1)
     }
 
     /**
      * this is an exmaple of changing state without callback function
      * which is not ideal
+     * function addOne () {
+     *      setCount(count + 1)
+     * }
      * */ 
+    
     function addOne () {
-        setCount(count + 1)
+        setCount(prevCount => prevCount + 1)
     }
     
     return (
