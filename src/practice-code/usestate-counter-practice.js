@@ -7,10 +7,19 @@ export default function App() {
     
     const [count, setCount] = React.useState(0)
     
+
+    /**
+     * this is an example of changing state with a callback function
+     * the callback function changes prevCount to prevCount + 1
+     */
     function minusOne() {
-        setCount(count - 1)
+        setCount(prevCount => prevCount + 1)
     }
-    
+
+    /**
+     * this is an exmaple of changing state without callback function
+     * which is not ideal
+     * */ 
     function addOne () {
         setCount(count + 1)
     }
