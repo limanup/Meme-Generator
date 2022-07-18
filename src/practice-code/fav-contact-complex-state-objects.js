@@ -1,4 +1,5 @@
 import React from "react";
+import Star from './fav-contact-setting-state-from-child-components-Count';
 
 export default function App() {
     const [contact, setContact] = React.useState({
@@ -23,11 +24,8 @@ export default function App() {
             <article className="card">
                 <img src="./images/user.png" className="card--image" />
                 <div className="card--info">
-                    <img
-                        src={`../images/${starIcon}`}
-                        className="card--favorite"
-                        onClick={toggleFavorite}
-                    />
+                    {/* pass function toggleFavorite to child component Star through props.handleClick */}
+                    <Star isFilled={contact.isFavorite} handleClick={toggleFavorite} />
                     <h2 className="card--name">
                         {contact.firstName} {contact.lastName}
                     </h2>
