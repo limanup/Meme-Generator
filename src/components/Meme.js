@@ -3,16 +3,25 @@ import {useState} from 'react';
 
 export default function Meme () {
 
-    const [memeImage = '', setMemeUrl] = useState()
+    const [meme, setMeme] = useState({
+        topText: '',
+        bottomText: '',
+        randomImage: ''
+    })
+
+    const [allMemeImages, setAllMemeImages] = useState(memesData)
     
     function getRandomMeme () {
-        const memesArr = memesData.data.memes
+        const memesArr = allMemeImages.data.memes
         // Use Math.random() function to get the random number between(0-1, 1 exclusive).
         // Multiply it by the array length to get the numbers between(0-arrayLength).
         // Use Math.floor() to get the index ranging from(0 to arrayLength-1).
         const randomMeme = memesArr[Math.floor(Math.random() * memesArr.length)]
-        // console.log(randomMeme.url)
-        setMemeUrl(randomMeme.url)
+        // console.log(randomMemeUrl)
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            randomImage: randomMeme.url
+        }))
     }
 
 
@@ -23,7 +32,7 @@ export default function Meme () {
                 <input autoComplete='off' placeholder="Text on bottom" type='text'></input>
                 <button type='button' onClick={getRandomMeme}>Get a new meme image 🖼</button>
             </form>
-            <img src={memeImage} className='meme-image'/>
+            <img src={meme.randomImage} className='meme-image'/>
         </main>
     )
 }
