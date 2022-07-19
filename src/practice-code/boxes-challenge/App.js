@@ -8,7 +8,8 @@ export default function App(props) {
     function toggle(id) {
         setArrBoxes((prevSqaures) => {
             const newSquares = [];
-
+            
+            // this is a imperative method
             for (let i = 0; i < prevSqaures.length; i++) {
                 const currentBox = prevSqaures[i]
                 if (currentBox.id === id) {
