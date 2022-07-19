@@ -6,7 +6,22 @@ export default function App(props) {
     const [arrBoxes, setArrBoxes] = React.useState(boxes);
 
     function toggle(id) {
-        console.log(id);
+        setArrBoxes((prevSqaures) => {
+            const newSquares = [];
+
+            for (let i = 0; i < prevSqaures.length; i++) {
+                if (prevSqaures[i].id === id) {
+                    const newBox = {
+                        id: id,
+                        on: !prevSqaures[i].on,
+                    };
+                    newSquares.push(newBox);
+                } else {
+                    newSquares.push(prevSqaures[i]);
+                }
+            }
+            return newSquares;
+        });
     }
 
     const squares = arrBoxes.map((box) => (
