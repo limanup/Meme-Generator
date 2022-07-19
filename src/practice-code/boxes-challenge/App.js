@@ -10,14 +10,15 @@ export default function App(props) {
             const newSquares = [];
 
             for (let i = 0; i < prevSqaures.length; i++) {
-                if (prevSqaures[i].id === id) {
+                const currentBox = prevSqaures[i]
+                if (currentBox.id === id) {
                     const newBox = {
-                        id: id,
-                        on: !prevSqaures[i].on,
+                        ...currentBox,
+                        on: !currentBox.on,
                     };
                     newSquares.push(newBox);
                 } else {
-                    newSquares.push(prevSqaures[i]);
+                    newSquares.push(currentBox);
                 }
             }
             return newSquares;
