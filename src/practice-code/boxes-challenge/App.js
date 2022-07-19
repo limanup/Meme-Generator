@@ -2,32 +2,22 @@ import React from "react";
 import boxes from "./boxes";
 import Box from "./Box";
 
-export default function App(props) {
+export default function App() {
     const [arrBoxes, setArrBoxes] = React.useState(boxes);
 
+    // declarative method
     function toggle(id) {
         setArrBoxes((prevSqaures) => {
-            const newSquares = [];
-            
-            // this is a imperative method
-            for (let i = 0; i < prevSqaures.length; i++) {
-                const currentBox = prevSqaures[i]
-                if (currentBox.id === id) {
-                    const newBox = {
-                        ...currentBox,
-                        on: !currentBox.on,
-                    };
-                    newSquares.push(newBox);
-                } else {
-                    newSquares.push(currentBox);
-                }
-            }
-            return newSquares;
+            return prevSqaures.map((square) => {
+                return square.id === id
+                    ? { ...square, on: !square.on }
+                    : square;
+            });
         });
     }
 
     const squares = arrBoxes.map((box) => (
-        <Box on={box.on} key={box.id} id={box.id} toggle={toggle} />
+        <Box on={box.on} key={box.id} toggle={() => toggle(box.id)} />
     ));
 
     return (

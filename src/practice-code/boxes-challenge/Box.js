@@ -6,7 +6,7 @@ export default function Box(props) {
         <div
             className="boxes"
             style={{ backgroundColor: props.on ? "#222222" : "transparent" }}
-            onClick={() => props.toggle(props.id)}
+            onClick={() => props.toggle}
         ></div>
     );
 }
