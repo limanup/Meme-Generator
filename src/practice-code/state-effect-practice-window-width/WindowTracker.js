@@ -15,9 +15,20 @@ export default function WindowTracker() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
     useEffect(() => {
-        window.addEventListener("resize", () => {
+
+        // move the function outside of event listener to re-use
+        function watchWidth() {
             setWindowWidth(window.innerWidth)
-        })
+        }
+        console.log("Setting up...")
+        window.addEventListener("resize", watchWidth)
+
+        // use return to clean-up side effect to avoid memory leak
+        return () => {
+            console.log("Cleaning up...")
+            window.removeEventListener("resize", watchWidth)
+        }
+
     }, [])
 
     return (
@@ -31,5 +42,5 @@ export default function WindowTracker() {
  * (in App.js)
  * Error message:
  * Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function. at WindowTracker (exe1.bundle.js:69:56)
- * 
+ * so we used return function to clean up side effect
  */
