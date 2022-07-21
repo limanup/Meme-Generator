@@ -1,5 +1,5 @@
 import memesData from "../memesData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Meme() {
     const [meme, setMeme] = useState({
@@ -7,18 +7,24 @@ export default function Meme() {
         bottomText: "",
         randomImage: "",
     });
+    
+    const [allMemes, setAllMemes] = useState({});
+    
+    useEffect(() => {
+        fetch("https://api.imgflip.com/get_memes")
+        .then((res) => res.json())
+        .then((data) => setAllMemes(data.data.memes))
+    }, [])
+    
+    console.log(allMemes)
 
-    console.log(meme)
-
-    const [allMemeImages, setAllMemeImages] = useState(memesData);
 
     function getRandomMeme() {
-        const memesArr = allMemeImages.data.memes;
         // Use Math.random() function to get the random number between(0-1, 1 exclusive).
         // Multiply it by the array length to get the numbers between(0-arrayLength).
         // Use Math.floor() to get the index ranging from(0 to arrayLength-1).
         const randomMeme =
-            memesArr[Math.floor(Math.random() * memesArr.length)];
+            allMemes[Math.floor(Math.random() * allMemes.length)];
         // console.log(randomMemeUrl)
         setMeme((prevMeme) => ({
             ...prevMeme,
