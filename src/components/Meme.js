@@ -25,7 +25,6 @@ export default function Meme() {
         // Use Math.floor() to get the index ranging from(0 to arrayLength-1).
         const randomMeme =
             allMemes[Math.floor(Math.random() * allMemes.length)];
-        // console.log(randomMemeUrl)
         setMeme((prevMeme) => ({
             ...prevMeme,
             randomImage: randomMeme.url,
